@@ -1,16 +1,17 @@
 using System;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController] //annotation gives extra power to controllers
-[Route("api/[controller]")] // EF can direct http request to the appropriate controller & endpoin /api/users
-public class UsersController(DataContext context) : ControllerBase
+[Authorize]
+public class UsersController(DataContext context) : BaseApiController
 {
     // Api endpoints
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {

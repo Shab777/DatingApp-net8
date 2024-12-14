@@ -1,0 +1,16 @@
+<h4>Internal Server Error</h4>
+@if (error) {
+        <h5 class="text-danger">Error:{{error.message}}</h5>
+        <p class="font-weight-bol">Note: If you are seeing this error the angular in not to be blame</p>
+        <p class="What to do next?"></p>
+        <ol>
+            <li>Open chrmoe dev tools and check the failing network request in the network tab</li>
+            <li>Examine the URL of the failing request</li>
+            <li>Reproduce the error in postmant- if you can reporoduce the error then angular is not to be blamed</li>
+        </ol>
+        <p>Following is the stack trace - check the first 2 lines this tells your exactly which line of code caused the problem!</p>
+
+        <code class="mt-5" style="background-color: whitesmoke;">
+                {{error.details}}
+        </code>
+    }

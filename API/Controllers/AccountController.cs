@@ -22,23 +22,23 @@ public class AccountController(DataContext context, ITokenService tokenService) 
 
         //Condition- if the user namapie is exist
         if (await UserExists(registerDto.UserName)) return BadRequest ("Username is already exists.");
+        return Ok();
+        // var user = new AppUser
+        // {
+        //   UserName = registerDto.UserName.ToLower(),
+        //   PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+        //   PasswordSalt = hmac.Key
+        // };
 
-        var user = new AppUser
-        {
-          UserName = registerDto.UserName.ToLower(),
-          PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-          PasswordSalt = hmac.Key
-        };
-
-        //save a new user in DB
-        context.Users.Add(user);
-        await context.SaveChangesAsync();
+        // //save a new user in DB
+        // context.Users.Add(user);
+        // await context.SaveChangesAsync();
         
-        return new UserDto
-        {   
-            Username = user.UserName,
-            Token = tokenService.CreateToken(user)
-        };
+        // return new UserDto
+        // {   
+        //     Username = user.UserName,
+        //     Token = tokenService.CreateToken(user)
+        // };
         
     }
     //Create a Http endpoint for user to login

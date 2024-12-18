@@ -27,7 +27,7 @@
              <a dropdownToggle class="dropdown-toggle text-light text-decoration-none"  >
               Welcome {{accountService.currentUser()?.username | titlecase}}</a>
              <div *dropdownMenu class="dropdown-menu" >
-                <a class="dropdown item  text-decoration-none">Edit Profile</a>
+                <a routerLink="/member/edit" class="dropdown item  text-decoration-none">Edit Profile</a>
                 <div class="dropdwon-divider"></div>
                 <a class="dropdown item  text-decoration-none" (click)="logout()">Logout</a>
              </div> 

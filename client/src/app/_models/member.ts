@@ -1,6 +1,7 @@
 import { Photo } from "./photo"
 
 export interface Member {
+    map(arg0: (m: any) => any): Member[]
     id: number
     userName: string
     age: number
@@ -8,8 +9,8 @@ export interface Member {
     knownAs: string
     created: Date
     lastActive: Date
-    introudction: any
-    interests: string
+    introduction: any
+    interests: string 
     lookingFor: string
     city: string
     country: string

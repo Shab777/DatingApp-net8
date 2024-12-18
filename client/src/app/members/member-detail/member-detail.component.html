@@ -11,7 +11,7 @@
                     <p>{{member.city}},{{member.country}}</p>
                 </div>
                 <div class="card-body">
-                    <strong>Location:</strong>
+                    <strong>Age:</strong>
                     <p>{{member.age}}</p>
                 </div>
                 <div class="card-body">
@@ -35,7 +35,7 @@
             <tabset class="member-tabset">
                 <tab heading="About {{member.knownAs}}">
                     <h4>Description</h4>
-                    <p>{{member.introudction}}</p>          
+                    <p>{{member.introduction}}</p>          
                     <h4>Looking for</h4>
                     <p>{{member.lookingFor}}</p>
                 </tab>
@@ -47,8 +47,9 @@
                     @if (photoTab.active) {
                         <gallery                     
                             [items]="images"
-                            class="gallery">
-                    </gallery>
+                            class="gallery"
+                            [thumbs] =true
+                        ></gallery>
                     }
                                         
                 </tab>

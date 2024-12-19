@@ -21,9 +21,7 @@ export class AccountService {
         const user = response;        
         if(user)//if the user exists then store info into currentuser object
         {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
-
+          this.setCurrentUser(user);
         }
       })
     );
@@ -34,16 +32,20 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + 'account/register',model).pipe(
       map((response : User) =>{
         const user = response;        
-        if(user)//if the user exists then store info into currentuser object
-        {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
-          
-
+        if(user)//if the user exists then send user to setCurrent Usermethod and get the current user dtls
+        {   
+            this.setCurrentUser(user);
         }
         return user;
       })
     );
+  }
+
+  //house keeping for set current user
+  setCurrentUser(user : User){
+      localStorage.setItem('user', JSON.stringify(user));
+       this.currentUser.set(user);
+            
   }
   //the above method returns a response i.e return a tokey key & u.n prop from api server. ang. service are singleton
 

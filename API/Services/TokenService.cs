@@ -21,7 +21,9 @@ public class TokenService(IConfiguration config) : ITokenService
        //user claims several things
         var claims = new List<Claim>
         {
-            new(JwtRegisteredClaimNames.NameId, user.UserName)
+            //new(JwtRegisteredClaimNames.NameId, user.UserName)
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, user.UserName)
         };  
         //describe the token's element which will return
         var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

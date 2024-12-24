@@ -3,15 +3,18 @@ import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LikesService } from './likes.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private http = inject(HttpClient); // new method
+  private likesService = inject(LikesService);
   baseUrl = environment.apiUrl;
   // store a current user information into an object and send this informatio to app compo via injecting this ang.service
   currentUser = signal<User | null>(null)
+  
 
   //constructor(private http:HttpClient) { } old method
 
@@ -44,8 +47,8 @@ export class AccountService {
   //house keeping for set current user
   setCurrentUser(user : User){
       localStorage.setItem('user', JSON.stringify(user));
-       this.currentUser.set(user);
-            
+      this.currentUser.set(user);
+      this.likesService.getLikeIds();       
   }
   //the above method returns a response i.e return a tokey key & u.n prop from api server. ang. service are singleton
 

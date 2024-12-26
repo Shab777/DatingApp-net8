@@ -22,7 +22,7 @@ public class MessagesController(IMessageRepository messageRepository, IUserRepos
         var sender = await userRepository.GetuserByUsernameAsync(username);
         var recipient = await userRepository.GetuserByUsernameAsync(createMessageDto.RecipientUsername);
 
-        if(sender == null || recipient == null)
+        if(sender == null || recipient == null || sender.UserName == null || recipient.UserName == null)
         return BadRequest("Cannot send message at this time");
 
         var message = new Message
